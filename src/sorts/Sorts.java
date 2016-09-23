@@ -9,10 +9,13 @@ public class Sorts {
     public static void main(String[] args) {
         int[] data = {4, 5, 17, 18, 19, 20, 6, 7, 8, 9, 1, 10, 11, 12, 13, 14, 15, 16, 2, 3};
         System.out.println(Arrays.toString(data));
-        bubbleSort(data);
-        System.out.println(Arrays.toString(data));
+//        bubbleSort(data);
+//        System.out.println(Arrays.toString(data));
 
-        bubbleSortAdditional(data);
+//        bubbleSortAdditional(data);
+//        System.out.println(Arrays.toString(data));
+//        selectionSort(data);
+        insertionSort(data);
         System.out.println(Arrays.toString(data));
     }
 
@@ -52,4 +55,15 @@ public class Sorts {
         }
     }
 
+    public static void insertionSort(int[] arr) {
+        for (int barrier = 1; barrier < arr.length; barrier++) {
+            int newElement = arr[barrier];
+            int location = barrier - 1;
+            while (location >= 0 && arr[location] > newElement) {
+                arr[location + 1] = arr[location];
+                location--;
+            }
+            arr[location + 1] = newElement;
+        }
+    }
 }
