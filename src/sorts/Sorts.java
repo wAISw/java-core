@@ -8,15 +8,20 @@ import java.util.Arrays;
 public class Sorts {
     public static void main(String[] args) {
         int[] data = {4, 5, 17, 18, 19, 20, 6, 7, 8, 9, 1, 10, 11, 12, 13, 14, 15, 16, 2, 3};
+        int[] data1 = {4, 5, 17, 18, 19, 20, 6, 12, 13, 14, 15, 16, 2, 3};
         System.out.println(Arrays.toString(data));
+        System.out.println(Arrays.toString(data1));
 //        bubbleSort(data);
 //        System.out.println(Arrays.toString(data));
 
 //        bubbleSortAdditional(data);
 //        System.out.println(Arrays.toString(data));
-//        selectionSort(data);
-        insertionSort(data);
-        System.out.println(Arrays.toString(data));
+        selectionSort(data);
+        insertionSort(data1);
+//        System.out.println(Arrays.toString(data));
+
+        int[] res = merger(data, data1);
+        System.out.println(Arrays.toString(res));
     }
 
     public static void bubbleSort(int[] arr) {
@@ -66,4 +71,38 @@ public class Sorts {
             arr[location + 1] = newElement;
         }
     }
+
+    public static void mergeSort(int[] arr) {
+
+    }
+
+    public static void quickSort(int[] arr) {
+
+    }
+
+    public static int[] merger(int[] a, int[] b) {
+        int[] result = new int[a.length + b.length];
+        int aIndex = 0;
+        int bIndex = 0;
+        while (aIndex + bIndex != result.length) {
+            if (aIndex < a.length && bIndex < b.length) {
+                if (a[aIndex] < b[bIndex]) {
+                    result[aIndex + bIndex] = a[aIndex++];
+                } else {
+                    result[aIndex + bIndex] = b[bIndex++];
+                }
+            } else {
+                int from = aIndex + bIndex;
+                int count = result.length - from;
+                if (aIndex == a.length) {
+                    System.arraycopy(b, bIndex, result, from, count);
+                } else if (bIndex == b.length) {
+                    System.arraycopy(a, aIndex, result, from, count);
+                }
+                break;
+            }
+        }
+        return result;
+    }
+
 }
